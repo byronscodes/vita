@@ -1,4 +1,5 @@
-import { pgTable, uuid, text, timestamp, integer, primaryKey } from 'drizzle-orm/pg-core';
+import { pgTable, uuid, text, timestamp, integer, primaryKey, check } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
 
 // Resumes
 export const resumes = pgTable('resumes', {
@@ -50,4 +51,5 @@ export const votes = pgTable('votes', {
   voteType: integer('vote_type').notNull(), // 1 for upvote, -1 for downvote
 }, (votesColumns) => [
   primaryKey({ columns: [votesColumns.userId, votesColumns.resumeId] }),
+  check('vote_type_check', sql`${votesColumns.voteType} IN (1, -1)`),
 ]);
