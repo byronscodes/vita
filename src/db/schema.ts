@@ -15,7 +15,7 @@ export const resumes = pgTable('resumes', {
   yearsOfExperience: text('years_of_experience'),   // e.g. "0-1 (Entry)", "2-5 (Mid)", "5+ (Senior)"
   targetRole: text('target_role').notNull(), // e.g. "Software Engineer", "Data Scientist"
   
-  netVotes: integer('netVotes').default(0).notNull(),
+  netVotes: integer('net_votes').default(0).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
