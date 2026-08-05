@@ -3,7 +3,7 @@ import { pgTable, uuid, text, timestamp, integer, primaryKey } from 'drizzle-orm
 // Resumes
 export const resumes = pgTable('resumes', {
   id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id').notNull(), 
+  userId: uuid('user_id').references(() => profiles.id, { onDelete: 'cascade' }).notNull(),
   title: text('title').notNull(),
   description: text('description'),
   fileUrl: text('file_url').notNull(),
